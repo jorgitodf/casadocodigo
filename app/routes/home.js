@@ -1,8 +1,10 @@
 module.exports = function(app) {
-    app.get('/home', function(req,res) {
-        res.render('home/index');
-    });    
     app.get('/', function(req,res) {
-        res.render('home/index');
+        var connection = app.infra.connectionFactory();
+        var produtosDao = new app.infra.ProdutosDAO(connection);
+        produtosDao.lista(function(err, results){
+            res.render('home/index', {livros:results});
+        });
+        connection.end();
     }); 
 }

@@ -11,7 +11,7 @@ var configuracoes = {
      }
 }
 
-var client = http.request(configuracoes, function(res){
+var client = http.request(configuracoes, function(res) {
      console.log(res.statusCode);
      res.on('data', function(body){
          console.log('Corpo:' + body);
